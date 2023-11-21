@@ -45,7 +45,7 @@ def upload_dataset():
 
             # Display the raw data
             st.write(f"**Raw DataFrame - {uploaded_file.name}**")
-            st.write(data)
+            st.dataframe(data)
 
             # List out columns with missing values
             missing_values = data.isnull().sum()
@@ -175,7 +175,7 @@ def feature_engineering(uploaded_data):
 
     # Display the modified DataFrame
     st.write("Modified DataFrame:")
-    st.write(modified_data)
+    st.dataframe(modified_data)
     st.write('**Data Transformation:**')
 
     with st.expander("Removed the following columns from DataFrame"):
@@ -713,12 +713,12 @@ def encode_data(modified_data_agn):
             for columns in columns_to_remove:
                 st.write(f"- {columns}")
 
-    st.write(modified_data_agn)
+    st.dataframe(modified_data_agn)
 
     # Get columns to encode
     listcolumns = modified_data_agn.columns.tolist()
     patientdf = pd.get_dummies(modified_data_agn,columns = listcolumns)
-    st.write(patientdf)
+    st.dataframe(patientdf)
     st.divider()
 
     return patientdf
@@ -847,7 +847,7 @@ def decision_tree(x_train, y_train, x_test1, y_test, x_te):
 
     x_te["To give?"] = miracle_drug
     st.write("**Prediction Test Results**")
-    st.write(x_te)
+    st.dataframe(x_te)
     st.divider()
 
 
